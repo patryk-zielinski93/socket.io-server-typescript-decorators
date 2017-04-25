@@ -1,0 +1,45 @@
+{
+  "name": "sio-tsd",
+  "version": "1.0.8",
+  "description": "Typescript decorators for socket-io server.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc -p ./tsconfig-dist.json",
+    "compile": "tsc -p ./tsconfig.json",
+    "lint": "tslint -c tslint.json \"src/**/*.ts\"",
+    "prepublish": "npm run build",
+    "start": "npm run compile && node ./src/example/index.js",
+    "start:debug": "npm run compile && node --debug=58585 ./src/example/index.js",
+    "start:debug-brk": "npm run compile && node --debug-brk=58586 ./src/example/index.js",
+    "start:dev": "nodemon -e ts --exec \"npm run start:debug\"",
+    "test": "mocha src/**/*.spec.js -R spec --bail",
+    "test:debug": "mocha --debug-brk=58587 src/**/*.spec.js",
+    "test:cov": "istanbul cover --dir ./coverage node_modules/mocha/bin/_mocha -- src/lib/**/*.spec.js -R spec --bail && npm run test:remap",
+    "test:remap": "remap-istanbul -i ./coverage/coverage.json -o coverage/typescript-report -t html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patryk-zielinski93/socket.io-server-typescript-decorators"
+  },
+  "author": "Patryk Zieliński",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^3.5.2",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.13",
+    "@types/socket.io": "^1.4.29",
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.3.0",
+    "nodemon": "^1.11.0",
+    "remap-istanbul": "^0.9.5",
+    "rimraf": "^2.6.1",
+    "ts-node": "^3.0.2",
+    "tslint": "^5.1.0",
+    "typescript": "^2.3.2"
+  },
+  "dependencies": {
+    "socket.io": "^1.7.3"
+  }
+}

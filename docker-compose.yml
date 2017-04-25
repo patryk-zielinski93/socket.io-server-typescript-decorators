@@ -1,0 +1,18 @@
+version: '3.0'
+services:
+  socket.io-framework:
+    container_name: sio-tsd
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - ./app:/app
+    ports:
+      - 58586:58586
+      - 58585:58585
+      - 8888:8888

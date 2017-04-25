@@ -1,0 +1,6 @@
+tsconfig.json
+tsconfig-dist.json
+tslint.json
+src
+coverage
+!dist

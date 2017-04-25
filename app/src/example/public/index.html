@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket.io Micro Framework example</title>
+</head>
+<body>
+<div id="counter"></div>
+<div id="counter2"></div>
+<script src="/socket.io.js"></script>
+<script>
+  var el = document.getElementById('counter');
+  var el2 = document.getElementById('counter2');
+  var socket = io('http://localhost:8888');
+  socket.on('counter', function (data) {
+    el.innerHTML = data.counter;
+    socket.emit('testMethod', data)
+  });
+  socket.on('counter2', function (data) {
+    el2.innerHTML = data.counter;
+    socket.emit('testMethod2', data)
+  });
+</script>
+</body>
+</html>
